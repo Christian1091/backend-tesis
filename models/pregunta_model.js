@@ -10,15 +10,15 @@
         type: String,
         required: true
     },
-    respuesta: [{
+    listRespuesta: {
         type: Schema.Types.Array,
         required: true
-    }],
-    // cuestionarioId: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Cuestionario', 
-    //     required: true
-    // },
+    },
+    cuestionarioId: {
+         type: Schema.Types.ObjectId,
+         ref: 'Cuestionario', 
+         required: true
+     },
  });
 
 /**Aqui quito el atributo password del json para que no muestre */

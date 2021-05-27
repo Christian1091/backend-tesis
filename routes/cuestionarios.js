@@ -17,17 +17,7 @@
   * y el tercero ya es el controlador, cuando vamos a implementar varios
   * middleware lo hacemos dentro de los corchetes
   */
- router.post( '/',
-   //  [ 
-   //      validarJWT,
-   //      check('nombre', 'El nombre del cuestionario es necesario').not().isEmpty(),
-   //      check('descripcion', 'La descripcion del cuestionario es necesario').not().isEmpty(),
-   //      // check('fecha', 'La fecha es necesario').not().isEmpty(),
-   //      check('activo', 'El estado del cuestionario es necesario').not().isEmpty(),
-   //      validarCampos
-   //  ], 
-    crearCuestionarios
- );
+ router.post( '/', validarJWT, crearCuestionarios );
  
  /**'/id' es para mandar el id del ususario que queremos actualizar */
  router.put( '/:id',

@@ -21,16 +21,16 @@
     activo: {
         type: Number
     },
+    listPreguntas: {
+        type: Schema.Types.Array,
+        ref: 'Pregunta', 
+        required: true
+    },
     usuario: {
         type: Schema.Types.ObjectId,
         ref: 'Usuario', 
         required: true
-    },
-    preguntas: [{
-        type: Schema.Types.Array,
-        ref: 'Pregunta', 
-        required: true
-    }],
+    }
  });
 
 /**Aqui quito el atributo password del json para que no muestre */

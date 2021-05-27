@@ -4,7 +4,8 @@ const Cuestionario = require('../models/cuestionario_model');
 
 const getCuestionarios = async ( req, res = response ) => {
     
-    //const cuestionarios = await Cuestionario.find().populate('usuario', 'nombre')                                              
+    const cuestionarios = await Cuestionario.find().populate('usuario', 'nombre ')
+                                        ;//.populate('hospital', 'nombre img')
 
     res.json({
         ok: true,
@@ -18,6 +19,7 @@ const crearCuestionarios = async ( req, res = response ) => {
      * uid => id del usuario
      */
     const uid = req.uid;
+    console.log(uid)
 
     /**
        el req.body contiene todo lo que tenemos en el model cuestionario, es decir
@@ -32,8 +34,6 @@ const crearCuestionarios = async ( req, res = response ) => {
         usuario: uid,
         ...req.body
     });
-
-    //console.log(uid)
 
     try {
 
