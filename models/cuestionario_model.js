@@ -18,9 +18,9 @@
        type: Date,
        default: Date.now()
     },
-    activo: {
-        type: Number
-    },
+    // activo: {
+    //     type: Number
+    // },
     listPreguntas: {
         type: Schema.Types.Array,
         ref: 'Pregunta', 

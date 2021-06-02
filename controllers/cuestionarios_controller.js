@@ -1,15 +1,33 @@
-const { response } = require('express');
+const { response, json } = require('express');
 
 const Cuestionario = require('../models/cuestionario_model');
 
-const getCuestionarios = async ( req, res = response ) => {
-    
-    const cuestionarios = await Cuestionario.find().populate('usuario', 'nombre ')
-                                        ;//.populate('hospital', 'nombre img')
+const getCuestionariosByIdUser = async ( req, res = response ) => {
 
+    const uid = req.uid;    
+    //console.log(uid)
+    const cuestionarios = await Cuestionario.find({usuario: uid})//.populate('usuario', 'nombre')
+                                        ;//.populate('hospital', 'nombre img')
     res.json({
         ok: true,
         cuestionarios
+    })
+}
+
+const getVerCuestionario = async ( req, res = response ) => {
+
+    const id =  req.params.id;  
+    //console.log(id)
+    
+    const cuestionarios = await Cuestionario.find({ _id: id});
+    
+    //let data =  JSON.stringify(cuestionarios);
+    //res = data;
+    //console.log(data);
+    res.json({
+        ok: true,
+        cuestionarios
+        //msg: "Ver Cuestionario"
     })
 }
 
@@ -61,15 +79,45 @@ const actualizarCuestionarios = ( req, res = response ) => {
     })
 }
 
-const borrarCuestionarios = ( req, res = response ) => {
-    res.json({
-        ok:true,
-        msg:'borrarCuestionarios'
-    })
+const borrarCuestionarios = async ( req, res = response ) => {
+
+    const id = req.params.id; 
+    //console.log(id)
+    try {
+
+        const cuestionario = await Cuestionario.findById( id );
+
+        if ( !cuestionario ) {
+
+            return res.status(404).json({
+                ok:true,
+                //msg: uid
+                msg:'Cuestionario no encontrado por id'
+            });
+        }
+
+        await Cuestionario.findByIdAndDelete( id );
+
+        res.json({
+            ok: true,
+            msg: 'Cuestionario borrado'
+        })
+        
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).json({
+            ok: false,
+            msg: "Hable con el administrador"
+        })
+        
+    }
 }
 
 module.exports = {
-    getCuestionarios,
+    getCuestionariosByIdUser,
+    getVerCuestionario,
     crearCuestionarios,
     actualizarCuestionarios,
     borrarCuestionarios
