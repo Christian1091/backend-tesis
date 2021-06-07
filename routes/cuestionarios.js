@@ -4,7 +4,11 @@
  */
  const { Router } = require('express');
  const { check } = require('express-validator');
- const { crearCuestionarios, actualizarCuestionarios, borrarCuestionarios, getCuestionariosByIdUser, getVerCuestionario } = require('../controllers/cuestionarios_controller');
+ const { crearCuestionarios, 
+         actualizarCuestionarios, 
+         borrarCuestionarios, 
+         getCuestionariosByIdUser, 
+         getVerCuestionario, getListCuestionarios } = require('../controllers/cuestionarios_controller');
  const { validarCampos } = require('../middlewares/validar-campos');
  
  const { validarJWT } = require('../middlewares/validar-jwt');
@@ -13,7 +17,10 @@
  
  router.get( '/', validarJWT, getCuestionariosByIdUser );
 
- router.get( '/ver-cuestionario/:id', validarJWT, getVerCuestionario );
+ router.get( '/list-cuestionarios', getListCuestionarios );
+
+ //router.get( '/ver-cuestionario/:id', validarJWT, getVerCuestionario );
+ router.get( '/ver-cuestionario/:id', getVerCuestionario );
  
  /**Para implementar un middleware debemos mandar como segundo argumento 
   * y el tercero ya es el controlador, cuando vamos a implementar varios

@@ -2,6 +2,7 @@ const { response, json } = require('express');
 
 const Cuestionario = require('../models/cuestionario_model');
 
+// Este get es para visualizar dentro del usuario autenticado
 const getCuestionariosByIdUser = async ( req, res = response ) => {
 
     const uid = req.uid;    
@@ -14,6 +15,22 @@ const getCuestionariosByIdUser = async ( req, res = response ) => {
     })
 }
 
+// Este get es para visualizar publicamente
+const getListCuestionarios = async ( req, res = response ) => {
+
+    //const uid = req.uid;    
+    //console.log(uid)
+    const cuestionarios = await Cuestionario.find().populate('usuario', 'nombre')
+                                                    .populate('respuesta')
+                                                   
+                                        ;//.populate('hospital', 'nombre img')
+    res.json({
+        ok: true,
+        cuestionarios
+    })
+}
+
+ // Este get es para visualizar el cuestionario dentro del usuario autenticado
 const getVerCuestionario = async ( req, res = response ) => {
 
     const id =  req.params.id;  
@@ -25,7 +42,7 @@ const getVerCuestionario = async ( req, res = response ) => {
     //res = data;
     //console.log(data);
     res.json({
-        ok: true,
+        //ok: true,
         cuestionarios
         //msg: "Ver Cuestionario"
     })
@@ -37,7 +54,7 @@ const crearCuestionarios = async ( req, res = response ) => {
      * uid => id del usuario
      */
     const uid = req.uid;
-    console.log(uid)
+    //console.log(uid)
 
     /**
        el req.body contiene todo lo que tenemos en el model cuestionario, es decir
@@ -117,6 +134,7 @@ const borrarCuestionarios = async ( req, res = response ) => {
 
 module.exports = {
     getCuestionariosByIdUser,
+    getListCuestionarios,
     getVerCuestionario,
     crearCuestionarios,
     actualizarCuestionarios,
