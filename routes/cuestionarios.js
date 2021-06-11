@@ -8,7 +8,7 @@
          actualizarCuestionarios, 
          borrarCuestionarios, 
          getCuestionariosByIdUser, 
-         getVerCuestionario, getListCuestionarios } = require('../controllers/cuestionarios_controller');
+         getVerCuestionario, getListCuestionarios, getRespuestas } = require('../controllers/cuestionarios.controller');
  const { validarCampos } = require('../middlewares/validar-campos');
  
  const { validarJWT } = require('../middlewares/validar-jwt');

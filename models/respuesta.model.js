@@ -6,14 +6,14 @@ const { Schema, model } = require('mongoose');
         type: String,
         required: true
     },
-    respuestas: {
+    tipoRespuesta: {
         type: Schema.Types.Mixed
-    },
-    preguntaId: {
-         type: Schema.Types.ObjectId,
-         ref: 'Pregunta', 
-         required: true
-     },
+    }
+    // preguntaId: {
+    //      type: Schema.Types.ObjectId,
+    //      ref: 'Pregunta', 
+    //      required: true
+    //  },
  });
 
 /**Aqui quito el atributo password del json para que no muestre */

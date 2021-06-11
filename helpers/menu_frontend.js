@@ -7,7 +7,7 @@
           submenu: [
             //{ titulo: 'Graficas', url: 'grafica1'},
             { titulo: 'Main', url: '/'},
-            //{ titulo: 'Cuestionarios', url: 'cuestionarios'},
+            { titulo: 'Email', url: 'buzon'},
             // { titulo: 'ProgressBar', url: 'progress'},
             // { titulo: 'Promesas', url: 'promesas'},
             // { titulo: 'Rxjs', url: 'rxjs'},

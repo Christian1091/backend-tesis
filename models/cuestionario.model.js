@@ -5,27 +5,36 @@
  const { Schema, model } = require('mongoose');
 
  /**Esta es la definicion de cada uno de los registros que van a estar dentro de mi tabla */
- const PreguntaSchema = Schema ({
+ const CuestionarioSchema = Schema ({
+    nombre: {
+        type: String,
+        required: true
+    },
     descripcion: {
         type: String,
         required: true
     },
-    listRespuesta: {
+    fechaCreacion: {
+       type: Date,
+       default: Date.now()
+    },
+    listPreguntas: {
         type: Schema.Types.Array,
+        ref: 'Pregunta', 
         required: true
     },
-    cuestionarioId: {
-         type: Schema.Types.ObjectId,
-         ref: 'Cuestionario', 
-         required: true
-     },
+    usuario: {
+        type: Schema.Types.ObjectId,
+        ref: 'Usuario', 
+        required: true
+    }
  });
 
 /**Aqui quito el atributo password del json para que no muestre */
-PreguntaSchema.method('toJSON', function() {
+CuestionarioSchema.method('toJSON', function() {
     const { __V, ...object} = this.toObject();
     return object;
 })
 
  /**Ahora vamos a implementar el modelo */
-module.exports = model( 'Pregunta', PreguntaSchema );
+module.exports = model( 'Cuestionario', CuestionarioSchema );
