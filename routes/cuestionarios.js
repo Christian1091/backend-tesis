@@ -15,6 +15,7 @@
  
  const router = Router();
  
+ /**Mostrar en los card los cuestioanrios creados por el usuario que se autentico */
  router.get( '/', validarJWT, getCuestionariosByIdUser );
 
  router.get( '/list-cuestionarios', getListCuestionarios );

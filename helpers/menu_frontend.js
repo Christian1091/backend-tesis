@@ -6,7 +6,7 @@
           icono: 'mdi mdi-gauge',
           submenu: [
             //{ titulo: 'Graficas', url: 'grafica1'},
-            { titulo: 'Main', url: '/'},
+            { titulo: 'Perfil', url: '/'},
             { titulo: 'Email', url: 'buzon'},
             // { titulo: 'ProgressBar', url: 'progress'},
             // { titulo: 'Promesas', url: 'promesas'},

@@ -17,7 +17,7 @@ const getListCuestionarios = async ( req, res = response ) => {
     })
 }
 
-// Este get es para visualizar los cuestionarios creados por el usuario ya autenticado
+// Este get es para visualizar los cuestionarios en los cards creados por el usuario ya autenticado
 const getCuestionariosByIdUser = async ( req, res = response ) => {
 
     const uid = req.uid;    
