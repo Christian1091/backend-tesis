@@ -30,7 +30,7 @@ const getCuestionariosByIdUser = async ( req, res = response ) => {
     })
 }
 
- /* Este get es para visualizar un cuestionario en especifico dentro del usuario autenticado */
+/* Este get es para visualizar un cuestionario en especifico dentro del usuario autenticado */
 const getVerCuestionario = async ( req, res = response ) => {
 
     const id =  req.params.id;  

@@ -6,10 +6,10 @@ const getListPost = async ( req, res = response ) => {
 
     //const uid = req.uid;    
     //console.log(uid)
-    const posts = await Post.find().populate('usuario', 'nombre');
+    const post = await Post.find().populate('usuario', 'nombre');
     res.json({
         ok: true,
-        posts
+        post
     })
 }
 
@@ -18,11 +18,29 @@ const getPostByIdUser = async ( req, res = response ) => {
 
     const uid = req.uid;    
     //console.log(uid)
-    const posts = await Post.find({usuario: uid})//.populate('usuario', 'nombre')
+    const post = await Post.find({usuario: uid})//.populate('usuario', 'nombre')
                                         ;//.populate('hospital', 'nombre img')
     res.json({
         ok: true,
-        posts
+        post
+    })
+}
+
+/* Este get es para visualizar el contenido del post en especifico dentro del usuario autenticado */
+const getVerContenidoPost = async ( req, res = response ) => {
+
+    const id =  req.params.id;  
+    //console.log(id)
+    
+    const post = await Post.findById(id);
+    
+    //let data =  JSON.stringify(cuestionarios);
+    //res = data;
+    //console.log(data);
+    res.json({
+        //ok: true,
+        post
+        //msg: "Ver Cuestionario"
     })
 }
 
@@ -75,7 +93,9 @@ const actualizarPost = async( req, res = response ) => {
         const cambiosPost = {
             ...req.body,
             usuario: uid
+            
         }
+        console.log(uid)
 
         const postActualizado =  await Post.findByIdAndUpdate( id, cambiosPost, { new: true } );
 
@@ -134,6 +154,7 @@ const borrarPost = async( req, res = response ) => {
 module.exports = {
     getListPost,
     getPostByIdUser,
+    getVerContenidoPost,
     crearPost,
     actualizarPost,
     borrarPost
