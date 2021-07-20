@@ -2,13 +2,17 @@
  * luzca de la manera que yo quiero
  */
 
- const { Schema, model } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
- /**Esta es la definicion de cada uno de los registros que van a estar dentro de mi tabla */
- const PreguntaSchema = Schema ({
+/**Esta es la definicion de cada uno de los registros que van a estar dentro de mi tabla */
+const PreguntaSchema = Schema({
     descripcion: {
         type: String,
         required: true
+    },
+    puntajePregunta: {
+        type: Number,
+        //required: true
     },
     listRespuestas: {
         type: Schema.Types.Array,
@@ -19,13 +23,13 @@
     //      ref: 'Cuestionario', 
     //      required: true
     //  },
- });
+});
 
 /**Aqui quito el atributo password del json para que no muestre */
 PreguntaSchema.method('toJSON', function() {
-    const { __V, ...object} = this.toObject();
+    const { __V, ...object } = this.toObject();
     return object;
 })
 
- /**Ahora vamos a implementar el modelo */
-module.exports = model( 'Pregunta', PreguntaSchema );
+/**Ahora vamos a implementar el modelo */
+module.exports = model('Pregunta', PreguntaSchema);

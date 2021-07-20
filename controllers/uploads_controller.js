@@ -1,19 +1,19 @@
 const path = require('path');
 const fs = require('fs');
 
-const { response } =  require('express');
+const { response } = require('express');
 const { v4: uuidv4 } = require('uuid');
 const { actualizarImagen } = require('../helpers/actualizar-imagen');
 
-const fileUpload = ( req, res = response ) => {
+const fileUpload = (req, res = response) => {
 
     const tipo = req.params.tipo;
     const id = req.params.id;
 
     // Validar tipo
-    const tiposValidos = ['hospitales','medicos','usuarios'];
+    const tiposValidos = ['hospitales', 'medicos', 'usuarios'];
 
-    if( !tiposValidos.includes(tipo) ){
+    if (!tiposValidos.includes(tipo)) {
 
         return res.status(400).json({
             ok: false,
@@ -27,44 +27,44 @@ const fileUpload = ( req, res = response ) => {
             ok: false,
             msg: 'No hay ningun archivo'
         });
-      }
+    }
 
-      // Procesar la imagen...
-      const file = req.files.imagen;
-      //console.log(file);
+    // Procesar la imagen...
+    const file = req.files.imagen;
+    //console.log(file);
 
-      // Extraer el nombre del archivo
-      const nombreCortado = file.name.split('.');
-      const extensionArchivo = nombreCortado[ nombreCortado.length -1 ];
+    // Extraer el nombre del archivo
+    const nombreCortado = file.name.split('.');
+    const extensionArchivo = nombreCortado[nombreCortado.length - 1];
 
-      // Validar extensiones
-      const extensionesValidas = ['png','jpg','jpeg','gif'];
-      // Si no esta ahi
-      if( !extensionesValidas.includes( extensionArchivo )){
+    // Validar extensiones
+    const extensionesValidas = ['png', 'jpg', 'jpeg', 'gif'];
+    // Si no esta ahi
+    if (!extensionesValidas.includes(extensionArchivo)) {
         return res.status(400).json({
             ok: false,
             msg: 'No es una extension permitida'
         });
-      }
+    }
 
-      // Generar el nombre del archivo
-      const nombreArchivo = `${ uuidv4() }.${ extensionArchivo }`;
+    // Generar el nombre del archivo
+    const nombreArchivo = `${ uuidv4() }.${ extensionArchivo }`;
 
-      // Crear el Path para guardar la imagen
-      const path = `./uploads/${ tipo }/${ nombreArchivo }`;
+    // Crear el Path para guardar la imagen
+    const path = `./uploads/${ tipo }/${ nombreArchivo }`;
 
-      // Mover la imagen
-      file.mv(path, (err) => {
-        if (err){
+    // Mover la imagen
+    file.mv(path, (err) => {
+        if (err) {
             console.log(err)
             return res.status(500).json({
-                ok:false,
+                ok: false,
                 msg: 'Error al mover la imagen'
             });
         }
 
         // Actualizar BD
-        actualizarImagen( tipo, id, nombreArchivo );
+        actualizarImagen(tipo, id, nombreArchivo);
 
         res.json({
             ok: true,
@@ -72,24 +72,24 @@ const fileUpload = ( req, res = response ) => {
             nombreArchivo
         });
 
-      });
+    });
 
 }
 
-const retornaImagen = ( req, res = response ) => {
+const retornaImagen = (req, res = response) => {
 
     const tipo = req.params.tipo;
     const foto = req.params.foto;
 
-    const pathImg = path.join(  __dirname, `../uploads/${ tipo }/${ foto }`);
+    const pathImg = path.join(__dirname, `../uploads/${ tipo }/${ foto }`);
 
     // Imagen por defecto
-    if( fs.existsSync( pathImg ) ) {
-        res.sendFile ( pathImg );
-        
+    if (fs.existsSync(pathImg)) {
+        res.sendFile(pathImg);
+
     } else {
-        const pathImg = path.join(  __dirname, `../uploads/no-image.png`);
-        res.sendFile ( pathImg );
+        const pathImg = path.join(__dirname, `../uploads/no-image.png`);
+        res.sendFile(pathImg);
     }
 
 

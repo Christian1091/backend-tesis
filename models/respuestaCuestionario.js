@@ -11,6 +11,22 @@
         type: String,
         //required: true
     },
+    correoParticipante: {
+        type: String,
+        //required: true
+    },
+    institucionParticipante: {
+        type: String,
+        //required: true
+    },
+    provinciaParticipante: {
+        type: String,
+        //required: true
+    },
+    ciudadParticipante: {
+        type: String,
+        //required: true
+    },
     fechaCreacion: {
        type: Date,
        //default: Date.now()

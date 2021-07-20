@@ -1,68 +1,69 @@
 const fs = require('fs');
 
-const Usuario =  require('../models/usuario_model');
-const Medico =  require('../models/medicos_model');
-const Hospital =  require('../models/hospital_model');
+const Usuario = require('../models/usuario_model');
+const Medico = require('../models/medicos_model');
+const Hospital = require('../models/hospital_model');
+//const Pregunta = require('../models/pregunta.model');
 
-const borrarImagen = ( path ) => {
-    if( fs.existsSync( path )) {
+const borrarImagen = (path) => {
+    if (fs.existsSync(path)) {
         //Borrar la iamgen anterior
-        fs.unlinkSync( path );
+        fs.unlinkSync(path);
     }
 }
 
-const actualizarImagen = async( tipo, id, nombreArchivo ) =>{
+const actualizarImagen = async(tipo, id, nombreArchivo) => {
 
     let pathViejo = '';
 
-    switch( tipo ) {
+    switch (tipo) {
         case 'medicos':
             const medico = await Medico.findById(id);
-            if( !medico ) {
+            if (!medico) {
                 console.log('No es un medico por id');
                 return false;
             }
 
             pathViejo = `./uploads/medicos/${ medico.img }`;
-            borrarImagen( pathViejo );
+            borrarImagen(pathViejo);
 
             medico.img = nombreArchivo;
             await medico.save();
             return true;
 
-        break;
+            break;
 
         case 'hospitales':
             const hospital = await Hospital.findById(id);
-            if( !hospital ) {
+            if (!hospital) {
                 console.log('No es un hospital por id');
                 return false;
             }
 
             pathViejo = `./uploads/hospitales/${ hospital.img }`;
-            borrarImagen( pathViejo );
+            borrarImagen(pathViejo);
 
             hospital.img = nombreArchivo;
             await hospital.save();
             return true;
 
-        break;
+            break;
 
         case 'usuarios':
             const usuario = await Usuario.findById(id);
-            if( !usuario ) {
+            if (!usuario) {
                 console.log('No es un usuario por id');
                 return false;
             }
 
             pathViejo = `./uploads/usuarios/${ usuario.img }`;
-            borrarImagen( pathViejo );
+            borrarImagen(pathViejo);
 
             usuario.img = nombreArchivo;
             await usuario.save();
             return true;
 
-        break;
+            break;
 
     }
 }

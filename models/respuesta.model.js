@@ -6,6 +6,10 @@ const { Schema, model } = require('mongoose');
         type: String,
         required: true
     },
+    puntosRespuesta: {
+        type: Number,
+        required: true
+    },
     tipoRespuesta: {
         type: Schema.Types.Mixed
     }

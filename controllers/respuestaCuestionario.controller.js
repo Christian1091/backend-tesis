@@ -11,13 +11,17 @@ const crearRespuestaCuestionario = async ( req, res = response ) => {
 
         let respuesta = new respuestaCuestionario ({
             nombreParticipante: body.nombreParticipante,
+            correoParticipante: body.correoParticipante,
+            institucionParticipante: body.institucionParticipante,
+            provinciaParticipante: body.provinciaParticipante,
+            ciudadParticipante: body.ciudadParticipante,
             fechaCreacion: body.fecha,
             puntosTotales: body.puntosTotales,
             cuestionarioId: body.idCuestionario,
             listRespuestasUsuario: body.listRespuestaUsuario
         })
 
-        //console.log(this.respuestaCuestionario);
+        //console.log(this.respuesta);
 
         const respuestaUsuarioCuestionarioDB = await respuesta.save();
 
