@@ -5,8 +5,14 @@
 
 Crear una carpeta en donde vaya a crear el proyecto
 Dentro de la carpeta abrir el Git Bash Here
-Desde Git Bash Here ejecutar el comando git clone <-link de la rama o branch a clonar->
-Ejemplo: git clone https://github.com/Christian1091/SeleniumTesting.git
+Desde Git Bash Here ejecutar el comando:
+```
+git clone <-link de la rama o branch a clonar->
+```
+Ejemplo:
+```
+git clone https://github.com/Christian1091/SeleniumTesting.git
+```
 
 ## Instalación de dependecias correspondientes
 
