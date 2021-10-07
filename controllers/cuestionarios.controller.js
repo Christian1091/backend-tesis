@@ -2,6 +2,8 @@ const { response, json } = require('express');
 
 const Cuestionario = require('../models/cuestionario.model');
 const Respuesta = require('../models/respuesta.model');
+mail = require('../utils/configMensaje.js');
+const Usuario = require('../models/usuario_model');
 
 // Este get es para visualizar publicamente
 const getListCuestionarios = async ( req, res = response ) => {
@@ -64,10 +66,20 @@ const crearCuestionarios = async ( req, res = response ) => {
        new Cuestionario y vamos a mandar todo lo que esta en el body con el ...req.body y con el 
        uid del usuario
      */
+       const [ usuarios ] = await Promise.all([
+        Usuario
+            .find({}, 'email'),
+        
+        Usuario.countDocuments()
+    ]);
     
     const cuestionario = new Cuestionario({
         usuario: uid,
         ...req.body
+    });
+    var listaEmails =[]
+    usuarios.forEach(data=>{
+        listaEmails.push(data.email)
     });
 
     try {
@@ -78,6 +90,10 @@ const crearCuestionarios = async ( req, res = response ) => {
             ok:true,
             cuestionario: cuestionarioDB
         })
+        //console.log(listaEmails)
+        //mail.sendMails(listaEmails,req.body.nombre)
+        mail.sendMails('prhely.12.94@gmail.com')
+        console.log(listaEmails) 
         
     } catch (error) {
         console.log(error)
