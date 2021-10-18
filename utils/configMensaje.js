@@ -17,7 +17,11 @@ const sendMails = (mails,content) => {
         to: mails, 
         subject: 'Notificacion de un nuevo test',
         html: `<strong>${content}</strong> <br/>`,
+
        // <strong> Link del nuevo test:</strong> <br/>//
+      // <a href="{{url}}/validarIngreso/{{ cuestionario._id }}" class="card-text">{{url}}/validarIngreso/{{ cuestionario._id }}</a>
+      // <hr>
+     // `<strong>${url/validarIngreso/cuestionario._id}<strong> <br/> `
        // <strong>${url_front}+'/'+${cuestionario._id}</strong>//
 //         html: `
 //  <strong>Nombre:</strong> ${formulario.nombre} <br/>
