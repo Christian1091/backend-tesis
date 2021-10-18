@@ -1,4 +1,8 @@
+<<<<<<< HEAD
  const nodemailer = require('nodemailer');
+=======
+const nodemailer = require('nodemailer');
+>>>>>>> main
 
 const sendMails = (mails,content) => {
     var transporter = nodemailer.createTransport({
