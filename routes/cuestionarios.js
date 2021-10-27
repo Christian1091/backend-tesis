@@ -30,11 +30,7 @@
  router.post( '/', validarJWT, crearCuestionarios );
  
  /**'/id' es para mandar el id del ususario que queremos actualizar */
- router.put( '/:id',
-    [],
-    actualizarCuestionarios 
-     
- );
+ router.put( '/:id', [], actualizarCuestionarios );
  
  router.delete( '/:id',validarJWT, borrarCuestionarios);
  

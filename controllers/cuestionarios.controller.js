@@ -4,13 +4,13 @@ const Cuestionario = require('../models/cuestionario.model');
 const Respuesta = require('../models/respuesta.model');
 
 // Este get es para visualizar publicamente
-const getListCuestionarios = async ( req, res = response ) => {
+const getListCuestionarios = async (req, res = response) => {
 
     //const uid = req.uid;    
     //console.log(uid)
     const cuestionarios = await Cuestionario.find().populate('usuario', 'nombre')
-                                                   
-                                        ;//.populate('hospital', 'nombre img')
+
+        ;//.populate('hospital', 'nombre img')
     res.json({
         ok: true,
         cuestionarios
@@ -18,12 +18,12 @@ const getListCuestionarios = async ( req, res = response ) => {
 }
 
 // Este get es para visualizar los cuestionarios en los cards creados por el usuario ya autenticado
-const getCuestionariosByIdUser = async ( req, res = response ) => {
+const getCuestionariosByIdUser = async (req, res = response) => {
 
-    const uid = req.uid;    
+    const uid = req.uid;
     //console.log(uid)
-    const cuestionarios = await Cuestionario.find({usuario: uid})//.populate('usuario', 'nombre')
-                                        ;//.populate('hospital', 'nombre img')
+    const cuestionarios = await Cuestionario.find({ usuario: uid })//.populate('usuario', 'nombre')
+        ;//.populate('hospital', 'nombre img')
     res.json({
         ok: true,
         cuestionarios
@@ -31,13 +31,13 @@ const getCuestionariosByIdUser = async ( req, res = response ) => {
 }
 
 /* Este get es para visualizar un cuestionario en especifico dentro del usuario autenticado */
-const getVerCuestionario = async ( req, res = response ) => {
+const getVerCuestionario = async (req, res = response) => {
 
-    const id =  req.params.id;  
+    const id = req.params.id;
     //console.log(id)
-    
-    const cuestionarios = await Cuestionario.find({ _id: id});
-    
+
+    const cuestionarios = await Cuestionario.find({ _id: id });
+
     //let data =  JSON.stringify(cuestionarios);
     //res = data;
     //console.log(data);
@@ -48,7 +48,7 @@ const getVerCuestionario = async ( req, res = response ) => {
     })
 }
 
-const crearCuestionarios = async ( req, res = response ) => {
+const crearCuestionarios = async (req, res = response) => {
 
     /**Extraemos el id del usuario de quien esta grabando
      * uid => id del usuario
@@ -64,7 +64,7 @@ const crearCuestionarios = async ( req, res = response ) => {
        new Cuestionario y vamos a mandar todo lo que esta en el body con el ...req.body y con el 
        uid del usuario
      */
-    
+
     const cuestionario = new Cuestionario({
         usuario: uid,
         ...req.body
@@ -75,51 +75,77 @@ const crearCuestionarios = async ( req, res = response ) => {
         const cuestionarioDB = await cuestionario.save();
 
         res.json({
-            ok:true,
+            ok: true,
             cuestionario: cuestionarioDB
         })
-        
+
     } catch (error) {
         console.log(error)
         res.status(500).json({
             ok: false,
             msg: 'Hable con el administrador'
         })
-        
+
     }
 }
 
-const actualizarCuestionarios = ( req, res = response ) => {
-    res.json({
-        ok:true,
-        msg:'actualizarCuestionarios'
-    })
+const actualizarCuestionarios = async (req, res = response) => {
+
+    const id = req.params.id;
+    console.log(id);
+    try {
+
+        // V--- THIS WAS ADDED
+        Cuestionario.findByIdAndUpdate( {_id: id } , req.body, (err, doc) => {
+            if (err) {
+                res.json({
+                    ok: false,
+                    msg: 'No se pudo actualizar'
+                })
+            }
+            console.log(doc);
+        });
+
+        res.json({
+            ok: true,
+            msg: 'Cuestionario Actualizado'
+        })
+    }
+    catch (error) {
+
+        console.log(error);
+
+        res.status(500).json({
+            ok: false,
+            msg: "No se puede actualizar"
+        })
+    }
 }
 
-const borrarCuestionarios = async ( req, res = response ) => {
+const borrarCuestionarios = async (req, res = response) => {
 
-    const id = req.params.id; 
+    const id = req.params.id;
     //console.log(id)
     try {
 
-        const cuestionario = await Cuestionario.findById( id );
+        const cuestionario = await Cuestionario.findById(id);
 
-        if ( !cuestionario ) {
+        if (!cuestionario) {
 
             return res.status(404).json({
-                ok:true,
+                ok: true,
                 //msg: uid
-                msg:'Cuestionario no encontrado por id'
+                msg: 'Cuestionario no encontrado por id'
             });
         }
 
-        await Cuestionario.findByIdAndDelete( id );
+        await Cuestionario.findByIdAndDelete(id);
 
         res.json({
             ok: true,
             msg: 'Cuestionario borrado'
         })
-        
+
     } catch (error) {
 
         console.log(error);
@@ -128,7 +154,7 @@ const borrarCuestionarios = async ( req, res = response ) => {
             ok: false,
             msg: "Hable con el administrador"
         })
-        
+
     }
 }
 
