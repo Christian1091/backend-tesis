@@ -117,7 +117,7 @@ const actualizarCuestionarios = async (req, res = response) => {
 
         res.status(500).json({
             ok: false,
-            msg: "No se puede actualizar"
+            msg: "No se puede actualizar este cuestionario"
         })
     }
 }
