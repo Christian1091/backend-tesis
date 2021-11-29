@@ -38,6 +38,14 @@
         type: String,
         //required: true
     },
+    cuestionarioNombre:{
+        type:String
+    },
+
+    cuestionarioDescripcion:{
+        type:String
+    },
+
     listRespuestasUsuario: {
         type: Schema.Types.Array,
         //required: true

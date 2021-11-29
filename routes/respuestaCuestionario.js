@@ -4,6 +4,7 @@
  */
  const { Router } = require('express');
  const { check } = require('express-validator');
+const { getCuestionariosByIdUser } = require('../controllers/cuestionarios.controller');
  const { crearRespuestaCuestionario, getRespuestaUsuario, getRespuestaByIdCuestionario, borrarRespuestaUsuario } = require('../controllers/respuestaCuestionario.controller');
  const { validarCampos } = require('../middlewares/validar-campos');
  
@@ -13,6 +14,8 @@
  
 
  router.get( '/:id', getRespuestaUsuario);
+
+ router.get( '/estadisticas/:id', validarJWT, getRespuestaByIdCuestionario);
 
  router.get( '/estadisticas/:id', validarJWT, getRespuestaByIdCuestionario);
 

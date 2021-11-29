@@ -26,12 +26,17 @@
         type: Schema.Types.ObjectId,
         ref: 'Usuario', 
         required: true
-    }
+    }, 
+     nombrePdf: {
+        type: String,
+        
+    },
  });
 
 /**Aqui quito el atributo password del json para que no muestre */
 PostSchema.method('toJSON', function() {
     const { __V, ...object} = this.toObject();
+    this.Date = new Date();
     return object;
 })
 

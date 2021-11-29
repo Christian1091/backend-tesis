@@ -1,10 +1,9 @@
+
 require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
-
 const { dbConnection } =  require('./database/config');
-
 // Crear servidor de express
 const app = express();
 
@@ -19,6 +18,9 @@ dbConnection();
 
 // Directorio publico
 app.use( express.static('public') );
+//FileUpload
+
+
 
 // Rutas
 app.use('/api/usuarios', require('./routes/usuarios'));
@@ -30,6 +32,7 @@ app.use('/api/upload', require('./routes/uploads'));
 app.use('/api/cuestionarios', require('./routes/cuestionarios'));
 app.use('/api/respuestaCuestionarios', require('./routes/respuestaCuestionario'));
 app.use('/api/post', require('./routes/post'));
+
 //app.use('/api/estadisticas', require('./routes/respuestaCuestionario'));
 // app.use('/api/respuestas', require('./routes/respuestas'));
 
