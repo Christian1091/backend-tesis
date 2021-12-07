@@ -54,6 +54,22 @@ const getRespuestaUsuario = async ( req, res = response ) => {
     })
 }
 
+// Este get es para visualizar publicamente
+const getRespuestaByUsuario = async ( req, res = response ) => {
+
+    const rtUsuarioid = req.params.id;     
+    //console.log(rtUsuarioid)
+    const respuestaUsuario = await respuestaCuestionario.findById( rtUsuarioid );
+    res.json({
+        ok: true,
+        //msg: 'Ver respuestas'
+        respuestaUsuario
+    })
+}
+
+
+
+
 // Este get es para visualizar los cuestionarios creados por el usuario ya autenticado en los cards
 const getRespuestaByIdCuestionario = async ( req, res = response ) => {
 

@@ -11,7 +11,6 @@ const { getCuestionariosByIdUser } = require('../controllers/cuestionarios.contr
  const { validarJWT } = require('../middlewares/validar-jwt');
  
  const router = Router();
- 
 
  router.get( '/:id', getRespuestaUsuario);
 
@@ -22,7 +21,8 @@ const { getCuestionariosByIdUser } = require('../controllers/cuestionarios.contr
  router.post( '/', crearRespuestaCuestionario );
  
  router.delete( '/:id',validarJWT, borrarRespuestaUsuario);
- 
+
+ //router.get( '/estadisticas/:id', validarJWT, getRespuestaByIdUsuario);
  
  // Exportamos el router
  module.exports = router;
