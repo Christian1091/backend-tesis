@@ -5,7 +5,7 @@
  const { Router } = require('express');
  const { check } = require('express-validator');
 const { getCuestionariosByIdUser } = require('../controllers/cuestionarios.controller');
- const { crearRespuestaCuestionario, getRespuestaUsuario, getRespuestaByIdCuestionario, borrarRespuestaUsuario } = require('../controllers/respuestaCuestionario.controller');
+ const { crearRespuestaCuestionario, getRespuestaUsuario, getRespuestaByIdCuestionario, borrarRespuestaUsuario, getResponseByEnterprise } = require('../controllers/respuestaCuestionario.controller');
  const { validarCampos } = require('../middlewares/validar-campos');
  
  const { validarJWT } = require('../middlewares/validar-jwt');
@@ -22,7 +22,7 @@ const { getCuestionariosByIdUser } = require('../controllers/cuestionarios.contr
  
  router.delete( '/:id',validarJWT, borrarRespuestaUsuario);
 
- //router.get( '/estadisticas/:id', validarJWT, getRespuestaByIdUsuario);
+ router.get( '/estadistica/:id', validarJWT, getResponseByEnterprise);
  
  // Exportamos el router
  module.exports = router;

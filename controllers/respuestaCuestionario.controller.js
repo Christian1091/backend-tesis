@@ -54,16 +54,17 @@ const getRespuestaUsuario = async ( req, res = response ) => {
     })
 }
 
-// Este get es para visualizar publicamente
-const getRespuestaByUsuario = async ( req, res = response ) => {
-
-    const rtUsuarioid = req.params.id;     
-    //console.log(rtUsuarioid)
-    const respuestaUsuario = await respuestaCuestionario.findById( rtUsuarioid );
+// Este get es para visualizar publicamente  
+const getResponseByEnterprise  = async ( req, res = response ) => {
+    const listaRespuestas = [];
+    const nameE = req.params.id;
+    const testAnswers = await respuestaCuestionario.find({ institucionParticipante:nameE });
+    testAnswers.forEach(r => {
+        listaRespuestas.push(r.listRespuestasUsuario);
+    })
     res.json({
         ok: true,
-        //msg: 'Ver respuestas'
-        respuestaUsuario
+        listaRespuestas
     })
 }
 
@@ -125,5 +126,6 @@ module.exports = {
     crearRespuestaCuestionario,
     getRespuestaUsuario,
     getRespuestaByIdCuestionario,
-    borrarRespuestaUsuario
+    borrarRespuestaUsuario,
+    getResponseByEnterprise
 }
