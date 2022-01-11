@@ -7,8 +7,8 @@ const sendMails = (mails,content) => {
         secure: false,
       //  service: 'gmail',
         auth: {
-            user: 'trans.dig.gih4pc@gmail.com', // Cambiar x email
-            pass: 'gih4pcUps21E' // Cambiar x tu password
+            user: 'trans.dig.gih4pc@gmail.com', // email
+            pass: 'gih4pcUps21' //password
         }
     }); 
 
