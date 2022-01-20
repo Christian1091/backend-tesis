@@ -45,9 +45,9 @@ app.use('/api/post', require('./routes/post'));
 
 
 //GET home route
-app.get('/', (req, res) => {
-    res.send('Hello World');
-});
+// app.get('/', (req, res) => {
+//     res.send('Hello World');
+// });
 
 // we will pass our 'app' to 'https' server
 https.createServer({
@@ -55,4 +55,9 @@ https.createServer({
     cert: fs.readFileSync('./cert.pem'),
     passphrase: 'Mmtd.td'
 }, app)
-.listen(process.env.PORT);
+.listen(3000, () => {
+    console.log("Servidor corriendo");
+});
+
+
+//.listen(process.env.PORT);
