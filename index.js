@@ -6,6 +6,8 @@ const cors = require('cors');
 const { dbConnection } =  require('./database/config');
 // Crear servidor de express
 const app = express();
+const https = require('https');
+const fs = require('fs');
 
 // Configurar CORS
 app.use(cors());
@@ -41,8 +43,6 @@ app.use('/api/post', require('./routes/post'));
 //     console.log('Servidor corriendo en el puerto: ' + process.env.PORT);
 // })
 
-const https = require('https');
-const fs = require('fs');
 
 //GET home route
 app.get('/', (req, res) => {
