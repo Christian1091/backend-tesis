@@ -37,6 +37,22 @@ app.use('/api/post', require('./routes/post'));
 // app.use('/api/respuestas', require('./routes/respuestas'));
 
 //levantar el servidor
-app.listen( process.env.PORT, () => {
-    console.log('Servidor corriendo en el puerto: ' + process.env.PORT);
-})
+// app.listen( process.env.PORT, () => {
+//     console.log('Servidor corriendo en el puerto: ' + process.env.PORT);
+// })
+
+const https = require('https');
+const fs = require('fs');
+
+//GET home route
+app.get('/', (req, res) => {
+    res.send('Hello World');
+});
+
+// we will pass our 'app' to 'https' server
+https.createServer({
+    key: fs.readFileSync('./key.pem'),
+    cert: fs.readFileSync('./cert.pem'),
+    passphrase: 'mmtd'
+}, app)
+.listen(process.env.PORT);
