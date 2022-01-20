@@ -55,9 +55,7 @@ https.createServer({
     cert: fs.readFileSync('./cert.pem'),
     passphrase: 'Mmtd.td'
 }, app)
-.listen(3000, () => {
-    console.log("Servidor corriendo");
-});
+.listen(process.env.PORT);
 
 
 //.listen(process.env.PORT);
