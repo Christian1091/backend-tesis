@@ -39,9 +39,9 @@ app.use('/api/post', require('./routes/post'));
 // app.use('/api/respuestas', require('./routes/respuestas'));
 
 //levantar el servidor
-//  app.listen( process.env.PORT, () => {
-//      console.log('Servidor corriendo en el puerto: ' + process.env.PORT);
-//  })
+ // app.listen( process.env.PORT, () => {
+   //   console.log('Servidor corriendo en el puerto: ' + process.env.PORT);
+ // })
 
 
 //GET home route
