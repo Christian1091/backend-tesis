@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-const sendMails = (mails,content) => {
+const sendMails = (mails,url,cuestionario) => {
     var transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
@@ -24,8 +24,7 @@ const sendMails = (mails,content) => {
       // <hr>
      // `<strong>${url/validarIngreso/cuestionario._id}<strong> <br/> `
        // <strong>${url_front}+'/'+${cuestionario._id}</strong>//
-         html: `
-  <strong>Nombre:</strong> ${sendMails.mailOptions} <br/>`,
+         html: ` ${url} , ${cuestionario.nombre}`,
 
     };
     transporter.sendMail(mailOptions, function (err, info) {

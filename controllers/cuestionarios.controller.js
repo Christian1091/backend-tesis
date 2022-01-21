@@ -78,6 +78,7 @@ const crearCuestionarios = async (req, res = response) => {
         usuario: uid,
         ...req.body
     });
+    
 
     var listaEmails =[]
     usuarios.forEach(data=>{
@@ -87,13 +88,14 @@ const crearCuestionarios = async (req, res = response) => {
     try {
 
         const cuestionarioDB = await cuestionario.save();
-
+        const url="http://localhost:4200/validarIngreso/"+cuestionarioDB.id;
         res.json({
             ok: true,
             cuestionario: cuestionarioDB
         })
+
         //mail.sendMails(listaEmails,req.body.nombre)
-        mail.sendMails('prhely.12.94@gmail.com')
+        mail.sendMails('prhely.12.94@gmail.com',url,cuestionario)
         console.log(listaEmails)
 
     } catch (error) {
