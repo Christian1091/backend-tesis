@@ -7,11 +7,12 @@ const sendMails = (mails,content) => {
         secure: false,
       //  service: 'gmail',
         auth: {
-            user: 'trans.dig.gih4pc@gmail.com', // email
+            user: 'td.gih4pc@gmail.com', // email
             pass: 'gih4pcUps21' //password
         }
     }); 
 
+    //var mails = [`$"(listaEmails)"`]
     const mailOptions = {
         from: 'Remitente',
         to: mails, 
