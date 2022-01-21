@@ -4,11 +4,15 @@ const sendMails = (mails,url,cuestionario) => {
     var transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
-        secure: true,
-      //  service: 'gmail',
+        secure: false,
+        service: 'gmail',
         auth: {
+           
             user: 'td.gih4pc@gmail.com', // email
             pass: 'gih4pcUps21' //password
+        },
+        tls: {
+            ciphers:'SSLv3'
         }
     }); 
 
