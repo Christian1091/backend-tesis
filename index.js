@@ -41,6 +41,7 @@ app.use('/api/post', require('./routes/post'));
 //levantar el servidor
  app.listen( process.env.PORT, () => {
      console.log('Servidor corriendo en el puerto: ' + process.env.PORT);
+     console.log("Funcionando...");
  })
 
 
