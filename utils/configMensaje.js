@@ -4,7 +4,7 @@ const sendMails = (mails,url,cuestionario) => {
     var transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
-        secure: false,
+        secureConnection: false,
         service: 'gmail',
         auth: {
            
