@@ -17,15 +17,15 @@ const sendMails = (mails,content) => {
         from: 'Remitente',
         to: mails, 
         subject: 'Nuevo Cuestionario',
-     //   text: "titulo",
-        html: `<strong>${content}</strong> <br/>`
-        //`<strong> Link del nuevo test:${nombre}</strong> <br/>`,
+        text: 'titulo',
+       // html: `<strong>${content}</strong> <br/>`
+       // `<strong> Link del nuevo test:${nombre}</strong> <br/>`,
       // <a href="{{url}}/validarIngreso/{{ cuestionario._id }}" class="card-text">{{url}}/validarIngreso/{{ cuestionario._id }}</a>
       // <hr>
      // `<strong>${url/validarIngreso/cuestionario._id}<strong> <br/> `
        // <strong>${url_front}+'/'+${cuestionario._id}</strong>//
-//         html: `
-//  <strong>Nombre:</strong> ${formulario.nombre} <br/>
+         html: `
+  <strong>Nombre:</strong> ${sendMails.mailOptions} <br/>`,
 
     };
     transporter.sendMail(mailOptions, function (err, info) {

@@ -39,9 +39,9 @@ app.use('/api/post', require('./routes/post'));
 // app.use('/api/respuestas', require('./routes/respuestas'));
 
 //levantar el servidor
- // app.listen( process.env.PORT, () => {
-   //   console.log('Servidor corriendo en el puerto: ' + process.env.PORT);
- // })
+ app.listen( process.env.PORT, () => {
+     console.log('Servidor corriendo en el puerto: ' + process.env.PORT);
+ })
 
 
 //GET home route
@@ -50,12 +50,12 @@ app.use('/api/post', require('./routes/post'));
 // });
 
 // we will pass our 'app' to 'https' server
- https.createServer({
-     key: fs.readFileSync('./key.pem'),
-     cert: fs.readFileSync('./cert.pem'),
-     passphrase: 'Mmtd.td'
- }, app)
- .listen(process.env.PORT);
+//  https.createServer({
+//      key: fs.readFileSync('./key.pem'),
+//      cert: fs.readFileSync('./cert.pem'),
+//      passphrase: 'Mmtd.td'
+//  }, app)
+//  .listen(process.env.PORT);
 
 
 //.listen(process.env.PORT);
