@@ -1,6 +1,7 @@
 const { response } = require('express');
 
 const respuestaCuestionario = require('../models/respuestaCuestionario');
+const cuestionario = require('../models/cuestionario.model')
 
 const crearRespuestaCuestionario = async ( req, res = response ) => {
 
@@ -47,10 +48,12 @@ const getRespuestaUsuario = async ( req, res = response ) => {
     const rtUsuarioid = req.params.id;     
     //console.log(rtUsuarioid)
     const respuestaUsuario = await respuestaCuestionario.findById( rtUsuarioid );
+    const cuest = await cuestionario.findById(respuestaUsuario.cuestionarioId);
     res.json({
         ok: true,
         //msg: 'Ver respuestas'
-        respuestaUsuario
+        respuestaUsuario,
+        puntaje:cuest.puntajeCuestionario,
     })
 }
 

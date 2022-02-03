@@ -40,8 +40,8 @@ const sendMails = async (mails,url,cuestionario) => {
       // <hr>
      // `<strong>${url/validarIngreso/cuestionario._id}<strong> <br/> `
        // <strong>${url_front}+'/'+${cuestionario._id}</strong>//
-         html: `"El grupo de Investigación GIH4PC, ha desarrollado el test ${cuestionario.nombre}, para medir el nivel de madurez de Transformación Digital según su área.  
-         Ingrese en el siguiente enlace para ir al formulario:"  ${url}`,
+         html: `El grupo de Investigación GIH4PC, ha desarrollado el test ${cuestionario.nombre}, para medir el nivel de madurez de Transformación Digital según su área.  
+         Ingrese en el siguiente enlace para ir al formulario:  ${url}`,
 
     };
     transporter.sendMail(mailOptions, function (err, info) {
