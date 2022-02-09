@@ -54,6 +54,7 @@ const getRespuestaUsuario = async ( req, res = response ) => {
         //msg: 'Ver respuestas'
         respuestaUsuario,
         puntaje:cuest.puntajeCuestionario,
+        tipo:cuest.tipo,
     })
 }
 
