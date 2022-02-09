@@ -6,6 +6,10 @@ const { Schema, model } = require('mongoose');
 
 /**Esta es la definicion de cada uno de los registros que van a estar dentro de mi tabla */
 const CuestionarioSchema = Schema({
+    tipo: {
+        type: String,
+        required: true
+    },
     nombre: {
         type: String,
         required: true
