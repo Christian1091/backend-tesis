@@ -94,7 +94,7 @@ const crearCuestionarios = async (req, res = response) => {
             cuestionario: cuestionarioDB
         })
         mail.sendMails(listaEmails,url,cuestionario)
-        //mail.sendMails('prhely.12.94@gmail.com',url,cuestionario)
+       // mail.sendMails('prhely.12.94@gmail.com',url,cuestionario)
         console.log(listaEmails)
 
     } catch (error) {
