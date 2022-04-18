@@ -35,6 +35,7 @@ app.use('/api/cuestionarios', require('./routes/cuestionarios'));
 app.use('/api/respuestaCuestionarios', require('./routes/respuestaCuestionario'));
 app.use('/api/post', require('./routes/post'));
 app.use('/api/area', require('./routes/area'));
+app.use('/api/noticia', require('./routes/noticia'));
 
 
 //app.use('/api/estadisticas', require('./routes/respuestaCuestionario'));
