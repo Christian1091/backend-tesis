@@ -2,10 +2,7 @@ version: "3"
 
 services:
   nodejs:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: nodejs
+    image: tdgihp4c/backend:v20
     container_name: nodejs
     restart: unless-stopped
     networks:
@@ -21,39 +18,18 @@ services:
     volumes:
       - web-root:/var/www/html
       - ./nginx-conf:/etc/nginx/conf.d
-      - certbot-etc:/etc/letsencrypt
-      - certbot-var:/var/lib/letsencrypt
-      - dhparam:/etc/ssl/certs
     depends_on:
       - nodejs
     networks:
       - app-network
 
-  certbot:
-    image: certbot/certbot
-    container_name: certbot
-    volumes:
-      - certbot-etc:/etc/letsencrypt
-      - certbot-var:/var/lib/letsencrypt
-      - web-root:/var/www/html
-    depends_on:
-      - webserver
-    command: certonly --webroot --webroot-path=/var/www/html --email prhely.12.94@gmail.com --agree-tos --no-eff-email --force-renewal -d tranformaciondigitalgih4pc.tech  -d api.tranformaciondigitalgih4pc.tech
-
 volumes:
-  certbot-etc:
-  certbot-var:
+
   web-root:
     driver: local
     driver_opts:
       type: none
-      device: /home/ely/node_project/views/
-      o: bind
-  dhparam:
-    driver: local
-    driver_opts:
-      type: none
-      device: /home/ely/node_project/dhparam/
+      device: /home/egoverment/node_project/views/
       o: bind
 
 networks:
