@@ -2,9 +2,11 @@ version: "3"
 
 services:
   nodejs:
-    image: tdgihp4c/backend:v20
+    image: tdgihp4c/backend:v22
     container_name: nodejs
     restart: unless-stopped
+    ports:
+      - "3000:3000"
     networks:
       - app-network
 
