@@ -23,17 +23,6 @@ services:
       - nodejs
     networks:
       - app-network
-  
-  webapp:
-    image: tdgihp4c/angular-app:v30
-    container_name: webapp
-    restart: unless-stopped
-    ports:
-      - "80:80"
-    depends_on:
-      - webserver
-    networks:
-      - app-network
 
 volumes:
 
