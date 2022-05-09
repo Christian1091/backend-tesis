@@ -23,6 +23,15 @@ services:
       - nodejs
     networks:
       - app-network
+  
+  webapp:
+    image: angular-app:v28
+    container_name: webapp
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    networks:
+      - app-network
 
 volumes:
 
