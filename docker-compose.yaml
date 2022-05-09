@@ -25,7 +25,7 @@ services:
       - app-network
   
   webapp:
-    image: tdgihp4c/angular-app:v29
+    image: tdgihp4c/angular-app:v30
     container_name: webapp
     restart: unless-stopped
     ports:
