@@ -2,7 +2,7 @@ version: "3"
 
 services:
   nodejs:
-    image: tdgihp4c/backend:v22
+    image: tdgihp4c/backend:1.1
     container_name: nodejs
     restart: unless-stopped
     ports:
