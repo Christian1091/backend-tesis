@@ -88,7 +88,7 @@ const crearCuestionarios = async (req, res = response) => {
     try {
 
         const cuestionarioDB = await cuestionario.save();
-        const url="https://ups.tranformaciondigitalgih4pc.tech/validarIngreso/"+cuestionarioDB.id;
+        const url="http://transformaciondigitalgih4pc.ups.edu.ec/validarIngreso/"+cuestionarioDB.id;
         res.json({
             ok: true,
             cuestionario: cuestionarioDB
