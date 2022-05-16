@@ -19,7 +19,8 @@ const crearRespuestaCuestionario = async ( req, res = response ) => {
             fechaCreacion: body.fecha,
             puntosTotales: body.puntosTotales,
             cuestionarioId: body.idCuestionario,
-            listRespuestasUsuario: body.listRespuestaUsuario
+            listRespuestasUsuario: body.listRespuestaUsuario,
+            tipoPersona: body.tipoPersona
         })
 
         //console.log(this.respuesta);

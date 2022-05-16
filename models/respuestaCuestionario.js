@@ -23,6 +23,10 @@
         type: String,
         //required: true
     },
+    tipoPersona: {
+        type: String,
+        required: true
+    },
     ciudadParticipante: {
         type: String,
         //required: true

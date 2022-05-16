@@ -1,6 +1,7 @@
 const { response, json } = require('express');
 
 const Cuestionario = require('../models/cuestionario.model');
+const respuestaCuestionario = require('../models/respuestaCuestionario');
 const Respuesta = require('../models/respuesta.model');
 mail = require('../utils/configMensaje.js');
 const Usuario = require('../models/usuario_model');
@@ -16,6 +17,20 @@ const getListCuestionarios = async (req, res = response) => {
     res.json({
         ok: true,
         cuestionarios
+    })
+}
+
+const getListCuestionariosByProvincia = async (req, res = response) => {
+    const provincia = req.params.provincia;
+    const ids = await respuestaCuestionario.find({'provinciaParticipante': provincia})
+    const datos = 
+        {
+            "Provincia": provincia,
+            "total": ids.length
+        }
+    res.json({
+        ok: true,
+        datos
     })
 }
 
@@ -183,4 +198,5 @@ module.exports = {
     crearCuestionarios,
     actualizarCuestionarios,
     borrarCuestionarios,
+    getListCuestionariosByProvincia
 }

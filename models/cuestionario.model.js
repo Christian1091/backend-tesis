@@ -18,6 +18,14 @@ const CuestionarioSchema = Schema({
         type: String,
         required: true
     },
+    tipoPersona: {
+        type: String,
+        required: true
+    },
+    empresa: {
+        type: String,
+        required: true
+    },
     puntajeCuestionario: {
         type: Number,
         required: true
