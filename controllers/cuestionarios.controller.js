@@ -23,10 +23,76 @@ const getListCuestionarios = async (req, res = response) => {
 const getListCuestionariosByProvincia = async (req, res = response) => {
     const provincia = req.params.provincia;
     const ids = await respuestaCuestionario.find({'provinciaParticipante': provincia})
+    const resultados = [];
+    ids.forEach(res => {
+        resultados.push(res["puntosTotales"])
+    })
     const datos = 
-        {
-            "Provincia": provincia,
-            "total": ids.length
+        {   
+            "resultados": resultados
+        }
+    res.json({
+        ok: true,
+        datos
+    })
+}
+
+const getListCuestionarioByInstitucion = async (req, res = response) => {
+    const institucion = req.params.institucion;
+    const ids = await respuestaCuestionario.find({'institucionParticipante': institucion})
+    const resultados = [];
+    ids.forEach(res => {
+        resultados.push(res["puntosTotales"])
+    })
+    const datos = 
+        {   
+            "resultados": resultados
+        }
+    res.json({
+        ok: true,
+        datos
+    })
+}
+
+//  Estudiantes - Administravtivos - Docentes
+
+const getListCuestionarioByInstitucionTipoPersona = async (req, res = response) => {
+    const empresa = req.params.institucion;
+    const tipo = req.params.tipo;
+    const ids = await Cuestionario.find({ 'tipoPersona': tipo, 'empresa': empresa });
+    const cuestionarios = [];
+    ids.forEach(res => {
+        cuestionarios.push(res['_id']);
+    });
+    const resultados = [];
+    await Promise.all(
+        cuestionarios.map(async res => {
+            const cues = await respuestaCuestionario.find({'cuestionarioId': res, 'institucionParticipante': empresa});
+            cues.map(r => {
+                resultados.push(r["puntosTotales"]);
+            });
+        })
+    );
+    const datos = 
+        {   
+            "resultados": resultados
+        }
+    res.json({
+        ok: true,
+        datos
+    });
+}
+
+const getListCuestionarioByInstitucionPersona = async (req, res = response) => {
+    const institucion = req.params.institucion;
+    const ids = await respuestaCuestionario.find({'institucionParticipante': institucion})
+    const resultados = [];
+    ids.forEach(res => {
+        resultados.push(res["puntosTotales"])
+    })
+    const datos = 
+        {   
+            "resultados": resultados
         }
     res.json({
         ok: true,
@@ -198,5 +264,7 @@ module.exports = {
     crearCuestionarios,
     actualizarCuestionarios,
     borrarCuestionarios,
-    getListCuestionariosByProvincia
+    getListCuestionariosByProvincia,
+    getListCuestionarioByInstitucion,
+    getListCuestionarioByInstitucionTipoPersona
 }

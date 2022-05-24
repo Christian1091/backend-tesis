@@ -8,7 +8,7 @@
          actualizarCuestionarios, 
          borrarCuestionarios, 
          getCuestionariosByIdUser, 
-         getVerCuestionario, getListCuestionarios, getRespuestas, getListCuestionariosByProvincia } = require('../controllers/cuestionarios.controller');
+         getVerCuestionario, getListCuestionarios, getRespuestas, getListCuestionarioByInstitucionTipoPersona, getListCuestionariosByProvincia, getListCuestionarioByInstitucion } = require('../controllers/cuestionarios.controller');
  const { validarCampos } = require('../middlewares/validar-campos');
  
  const { validarJWT } = require('../middlewares/validar-jwt');
@@ -21,6 +21,9 @@
  router.get( '/list-cuestionarios', getListCuestionarios );
 
  router.get( '/list-cuestionarios-provincia/:provincia', getListCuestionariosByProvincia );
+ router.get( '/list-cuestionarios-institucion/:institucion', getListCuestionarioByInstitucion );
+ router.get( '/list-cuestionarios-institucion-tipo/:institucion/:tipo', getListCuestionarioByInstitucionTipoPersona );
+ 
 
  //router.get( '/ver-cuestionario/:id', validarJWT, getVerCuestionario );
  router.get( '/ver-cuestionario/:id', getVerCuestionario );
