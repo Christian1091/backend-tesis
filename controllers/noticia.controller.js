@@ -22,6 +22,31 @@ const crearNoticia = async (req, res = response) => {
     }
 }
 
+const actualizarNoticia = async (req, res = response) => {
+    const id = req.params.id;
+    try {
+        Noticia.updateOne(id , req.body, {new: true}, function(err, doc) {
+            if (err) {
+                res.json({
+                    ok: false,
+                    msg: 'No se pudo actualizar'
+                });
+            }
+            console.log(doc);
+        });
+        res.json({
+            ok: true,
+            msg: 'Noticia actualizada'
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Consulte con el administrador'
+        })
+    }
+}
+
 
 const getListNoticias = async (req, res = response) => {
     const noticias = await Noticia.find();
@@ -83,9 +108,9 @@ const uploadImage = (req, res = response) => {
 const viewImage = (req, res = response) => {
 
     const nombrePdf = req.params.nombreImagen;
-    
 
-    const pathImg = path.join(__dirname, `../uploads/images/${ nombrePdf }`);
+
+    const pathImg = path.join(__dirname, `../uploads/images/${nombrePdf}`);
 
     // Imagen por defecto
     if (fs.existsSync(pathImg)) {
@@ -101,5 +126,6 @@ module.exports = {
     crearNoticia,
     getListNoticias,
     uploadImage,
-    viewImage
+    viewImage,
+    actualizarNoticia
 }

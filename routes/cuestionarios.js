@@ -4,10 +4,12 @@
  */
  const { Router } = require('express');
  const { check } = require('express-validator');
- const { crearCuestionarios, 
+ const { crearCuestionarios,
+        getListCuestionariosGeneral,
          actualizarCuestionarios, 
          borrarCuestionarios, 
-         getCuestionariosByIdUser, 
+         getCuestionariosByIdUser,
+         enviarCorreoUsuario, 
          getVerCuestionario, getListCuestionarios, getRespuestas, getListCuestionarioByInstitucionTipoPersona, getListCuestionariosByProvincia, getListCuestionarioByInstitucion } = require('../controllers/cuestionarios.controller');
  const { validarCampos } = require('../middlewares/validar-campos');
  
@@ -23,6 +25,7 @@
  router.get( '/list-cuestionarios-provincia/:provincia', getListCuestionariosByProvincia );
  router.get( '/list-cuestionarios-institucion/:institucion', getListCuestionarioByInstitucion );
  router.get( '/list-cuestionarios-institucion-tipo/:institucion/:tipo', getListCuestionarioByInstitucionTipoPersona );
+ router.get( '/list-cuestionarios-general', getListCuestionariosGeneral );
  
 
  //router.get( '/ver-cuestionario/:id', validarJWT, getVerCuestionario );
@@ -39,6 +42,7 @@
  
  router.delete( '/:id',validarJWT, borrarCuestionarios);
  
+ router.post('/enviar-correo', enviarCorreoUsuario);
  
  // Exportamos el router
  module.exports = router;
