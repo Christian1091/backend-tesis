@@ -14,9 +14,9 @@ const { getCuestionariosByIdUser } = require('../controllers/cuestionarios.contr
 
  router.get( '/:id', getRespuestaUsuario);
 
- router.get( '/estadisticas/:id', validarJWT, getRespuestaByIdCuestionario);
+ router.get( '/estadisticas/:id', getRespuestaByIdCuestionario);
 
- router.get( '/estadisticas/:id', validarJWT, getRespuestaByIdCuestionario);
+//  router.get( '/estadisticas/:id', validarJWT, getRespuestaByIdCuestionario);
 
  router.post( '/', crearRespuestaCuestionario );
  

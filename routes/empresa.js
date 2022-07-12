@@ -6,7 +6,7 @@ const router = Router();
 const { registrarEmpresa, getListEmpresas, eliminarEmpresa  } = require('../controllers/empresa.controller');
 
 router.post('/registrar', validarJWT, registrarEmpresa);
-router.get('/empresas', validarJWT, getListEmpresas);
+router.get('/empresas', getListEmpresas);
 router.delete( '/:nombre', validarJWT, eliminarEmpresa );
 
 

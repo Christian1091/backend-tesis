@@ -42,7 +42,9 @@ const getListCuestionariosByProvincia = async (req, res = response) => {
     const ids = await respuestaCuestionario.find({ 'provinciaParticipante': provincia })
     const resultados = [];
     ids.forEach(res => {
-        resultados.push(res["puntosTotales"])
+        const size = res["listRespuestasUsuario"].length;
+        const total = res["puntosTotales"];
+        resultados.push((total * 100) / size)
     })
     const datos =
     {
@@ -59,7 +61,9 @@ const getListCuestionarioByInstitucion = async (req, res = response) => {
     const ids = await respuestaCuestionario.find({ 'institucionParticipante': institucion })
     const resultados = [];
     ids.forEach(res => {
-        resultados.push(res["puntosTotales"])
+        const size = res["listRespuestasUsuario"].length;
+        const total = res["puntosTotales"];
+        resultados.push((total * 100) / size)
     })
     const datos =
     {
@@ -86,7 +90,9 @@ const getListCuestionarioByInstitucionTipoPersona = async (req, res = response) 
         cuestionarios.map(async res => {
             const cues = await respuestaCuestionario.find({ 'cuestionarioId': res, 'institucionParticipante': empresa });
             cues.map(r => {
-                resultados.push(r["puntosTotales"]);
+                const size = r["listRespuestasUsuario"].length;
+                const total = r["puntosTotales"];
+                resultados.push((total * 100) / size)
             });
         })
     );
@@ -105,7 +111,9 @@ const getListCuestionarioByInstitucionPersona = async (req, res = response) => {
     const ids = await respuestaCuestionario.find({ 'institucionParticipante': institucion })
     const resultados = [];
     ids.forEach(res => {
-        resultados.push(res["puntosTotales"])
+        const size = res["listRespuestasUsuario"].length;
+        const total = res["puntosTotales"];
+        resultados.push((total * 100) / size)
     })
     const datos =
     {
@@ -135,9 +143,7 @@ const getVerCuestionario = async (req, res = response) => {
 
     const id = req.params.id;
     //console.log(id)
-
     const cuestionarios = await Cuestionario.find({ _id: id });
-
     //let data =  JSON.stringify(cuestionarios);
     //res = data;
     //console.log(data);
