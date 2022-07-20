@@ -5,8 +5,8 @@
           titulo: 'Principal',
           icono: 'mdi mdi-gauge',
           submenu: [
-            { titulo: 'Graficas', url: 'grafica1'},
-            { titulo: 'Mis publicaciones', url: '/'},
+            { titulo: 'Graficas', url: 'grafica1', icono: 'pi pi-chart-bar'},
+            { titulo: 'Mis publicaciones', url: '/', icono: 'pi pi-list'},
             
             // { titulo: 'ProgressBar', url: 'progress'},
             // { titulo: 'Promesas', url: 'promesas'},
@@ -26,8 +26,8 @@
           /**Como lo que queremos mostrar esta en un arreglo, ponemos el [1]
            * el unshift nos permite anadir a la primera posicion 
            */
-          menu[0].submenu.unshift({ titulo: 'Mis cuestionarios', url: 'cuestionarios' })
-          menu[1].submenu.unshift({ titulo: 'Usuarios', url: 'usuarios' })
+          menu[0].submenu.unshift({ titulo: 'Mis cuestionarios', url: 'cuestionarios', icono: 'pi pi-copy' })
+          menu[1].submenu.unshift({ titulo: 'Usuarios', url: 'usuarios', icono: 'pi pi-users' })
           
 
       }
