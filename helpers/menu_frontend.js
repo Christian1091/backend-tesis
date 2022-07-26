@@ -1,37 +1,45 @@
-    const getMenuFrontEnd = ( role = 'USER_ROLE') => {
-    
-    const menu = [
-        {
-          titulo: 'Principal',
-          icono: 'mdi mdi-gauge',
-          submenu: [
-            { titulo: 'Graficas', url: 'grafica1', icono: 'pi pi-chart-bar'},
-            { titulo: 'Mis publicaciones', url: '/', icono: 'pi pi-list'},
-            
-            // { titulo: 'ProgressBar', url: 'progress'},
-            // { titulo: 'Promesas', url: 'promesas'},
-            // { titulo: 'Rxjs', url: 'rxjs'},
-          ]
-        },
-        {
-          titulo: 'Mantenimiento',
-          icono: 'mdi mdi-folder-lock-open',
-          submenu: [
-        
-          ]
-        },
-      ];
+const getMenuFrontEnd = (role = 'USER_ROLE') => {
 
-      if ( role === 'ADMIN_ROLE' ) {
-          /**Como lo que queremos mostrar esta en un arreglo, ponemos el [1]
-           * el unshift nos permite anadir a la primera posicion 
-           */
-          menu[0].submenu.unshift({ titulo: 'Mis cuestionarios', url: 'cuestionarios', icono: 'pi pi-copy' })
-          menu[1].submenu.unshift({ titulo: 'Usuarios', url: 'usuarios', icono: 'pi pi-users' })
-          
+  const menu = [
+    {
+      label: 'Perfil',
+      icon: 'pi pi-user',
+      items: [
+       
+      ]
+    },
+    {
+      label: 'Principal',
+      icon: 'mdi mdi-gauge',
+      items: [
+        { label: 'Gráficas', routerLink: 'grafica1', icon: 'pi pi-chart-bar' },
+        { label: 'Mis publicaciones', routerLink: '/', icon: 'pi pi-list' },
 
-      }
-      return menu;
+        // { titulo: 'ProgressBar', url: 'progress'},
+        // { titulo: 'Promesas', url: 'promesas'},
+        // { titulo: 'Rxjs', url: 'rxjs'},
+      ]
+    },
+    {
+      label: 'Mantenimiento',
+      icon: 'mdi mdi-folder-lock-open',
+      items: [
+
+      ]
+    },
+  ];
+
+  if (role === 'ADMIN_ROLE') {
+    /**Como lo que queremos mostrar esta en un arreglo, ponemos el [1]
+     * el unshift nos permite anadir a la primera posicion 
+     */
+    menu[0].items.unshift( { label: 'Mi Perfil', routerLink: 'perfil', icon: 'pi pi-user-edit' })
+    menu[1].items.unshift({ label: 'Mis cuestionarios', routerLink: 'cuestionarios', icon: 'pi pi-copy' })
+    menu[2].items.unshift({ label: 'Usuarios', routerLink: 'usuarios', icon: 'pi pi-users' })
+
+
+  }
+  return menu;
 }
 //***Animation
 // var animations = ['rejection','inattentive','mnemonics','phonological','estimate'
@@ -57,5 +65,5 @@
 //****Animation */
 
 module.exports = {
-    getMenuFrontEnd
+  getMenuFrontEnd
 }
