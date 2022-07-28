@@ -23,9 +23,11 @@ const crearNoticia = async (req, res = response) => {
 }
 
 const actualizarNoticia = async (req, res = response) => {
-    const id = req.params.id;
+    console.log(req.body);
+    console.log("actualizando");
     try {
-        Noticia.updateOne(id , req.body, {new: true}, function(err, doc) {
+        const update = {titulo: req.body.titulo, descripcion: req.body.descripcion, texto: req.body.texto, nombreImagen: req.body.nombreImagen}
+        Noticia.findOneAndUpdate({_id: req.body._id}, update, {new: false}, function(err, doc) {
             if (err) {
                 res.json({
                     ok: false,
@@ -47,6 +49,15 @@ const actualizarNoticia = async (req, res = response) => {
     }
 }
 
+
+const getListNoticiasByUserId = async (req, res = response) => {
+    const uid = req.uid;
+    const noticias = await Noticia.find({ usuario: uid });
+    res.json({
+        ok: true,
+        noticias
+    })
+}
 
 const getListNoticias = async (req, res = response) => {
     const noticias = await Noticia.find();
@@ -127,5 +138,6 @@ module.exports = {
     getListNoticias,
     uploadImage,
     viewImage,
-    actualizarNoticia
+    actualizarNoticia,
+    getListNoticiasByUserId
 }
